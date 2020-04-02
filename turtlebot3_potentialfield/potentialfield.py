@@ -92,7 +92,7 @@ def main():
 
     # publisher and subscriber
     #avoid.create_subscription(str, 'scan', callback,10)
-    node.create_subscription(str, 'scan', callback, qos)
+    node.create_subscription(String, 'scan', callback, qos)
     pub = node.create_publisher(Twist, "cmd_vel", 20)
 
     # infinite loop
