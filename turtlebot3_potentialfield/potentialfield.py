@@ -42,7 +42,10 @@ def callback(msg):
     global pub
 
     ranges = make_vector(msg)
-
+    
+#DEBUG---------------------------------------------------------------------------------------
+    self.get_logger().info('I heard sumtin...')
+    
     #make a vector of each entry in ranges
     for i, e in enumerate(ranges):
         ranges[i] = (e * math.cos(math.radians(i)) , e * math.sin(math.radians(i)))
