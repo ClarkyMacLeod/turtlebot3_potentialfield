@@ -45,7 +45,7 @@ def callback(msg):
     
 #DEBUG---------------------------------------------------------------------------------------
     self.get_logger().info('I heard sumtin...')
-    
+
     #make a vector of each entry in ranges
     for i, e in enumerate(ranges):
         ranges[i] = (e * math.cos(math.radians(i)) , e * math.sin(math.radians(i)))
@@ -86,6 +86,9 @@ def callback(msg):
 def main():
     global pub
     rclpy.init()
+    
+#DEBUG---------------------------------------------------------------------------------------
+    print('potentialfield started')
     
     qos = QoSProfile(depth=10)
     
