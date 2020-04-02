@@ -96,7 +96,9 @@ def main():
     pub = node.create_publisher(Twist, "cmd_vel", 20)
 
     # infinite loop
-    rclpy.spin()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
 
 
 if __name__ == '__main__':
