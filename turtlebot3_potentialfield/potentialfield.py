@@ -17,6 +17,9 @@ pub = None
 
 def make_vector(msg):
     global R
+#DEBUG---------------------------------------------------------------------------------------
+    print(msg.ranges)
+
     #distances above R are not important
     ranges = [R if x > R else x for x in msg.ranges]
     #distances below r are to be discarded
@@ -40,6 +43,9 @@ def callback(msg):
     global max_vel
     global max_rot
     global pub
+
+#DEBUG---------------------------------------------------------------------------------------
+    print(type(self.msg.ranges))
 
     ranges = make_vector(msg)
     
@@ -98,11 +104,17 @@ def main():
 
     # publisher and subscriber
     #avoid.create_subscription(str, 'scan', callback,10)
+
     node.create_subscription(LaserScan, 'scan', callback, qos)
     pub = node.create_publisher(Twist, "cmd_vel", 20)
 
+#DEBUG---------------------------------------------------------------------------------------
+    print('this is before the spin')
+
     # infinite loop
     rclpy.spin(node)
+#DEBUG---------------------------------------------------------------------------------------
+    print('this is after the spin')
     node.destroy_node()
     rclpy.shutdown()
 

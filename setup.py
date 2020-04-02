@@ -24,7 +24,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'potencial = turtlebot3_potentialfield.potentialfield:potentialfield'
+            'potential = turtlebot3_potentialfield.potentialfield:main'
         ],
     },
 )
