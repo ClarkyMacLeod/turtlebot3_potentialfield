@@ -2,6 +2,7 @@
 
 import rclpy
 from rclpy.node import Node
+from rclpy.qos import QoSProfile
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
 import numpy as np
@@ -97,11 +98,22 @@ class Obstacle_Avoidance(self, Node):
 
 def potentialfield():
     global pub 
-
+    rclpy.init()
+    
+    qos = QoSProfile(depth=10)
     # initialize node
     rclpy.init(args=args)
     potentialfield = Obstacle_Avoidance()
     
+    avoid = rclpy.create_node('obstacle_avoidance')
+
+    # publisher and subscriber
+    #avoid.create_subscription(str, 'scan', callback,10)
+    avoid.create_subscription(str, 'scan', callback, qos)
+    pub = avoid.create_publisher("cmd_vel", Twist, queue_size = 20)
+
+    # behavior on shutdown
+    rclpy.on_shutdown(stop)
     # infinite loop
     rclpy.spin()
 
