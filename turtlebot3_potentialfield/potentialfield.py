@@ -13,19 +13,21 @@ r = 0.12
 A = 1
 max_vel = 0.26
 max_rot = 1.82
-pub = None
 
 class Potentialfield(Node):
 
     def __init__(self,node_name='potentialfield'):
-        global pub
         qos = QoSProfile(depth=10)
 #DEBUG---------------------------------------------------------------------------------------
         print('constructor of Potentialfield')
 
         #publisher and subscriber
-        self.sub = self.create_subscription(LaserScan, 'scan', self.potentialfield_callback, qos)
-        pub = self.create_publisher(Twist, "cmd_vel", 20)
+        self.sub = self.create_subscription(
+            LaserScan,
+            'scan', 
+            self.potentialfield_callback, 
+            qos)
+        self.pub = self.create_publisher(Twist, "cmd_vel", 20)
 
     def make_vector(self, msg):
         global R
@@ -54,7 +56,6 @@ class Potentialfield(Node):
         global A
         global max_vel
         global max_rot
-        global pub
 
 #DEBUG---------------------------------------------------------------------------------------
         print(type(msg.ranges))
@@ -98,7 +99,7 @@ class Potentialfield(Node):
         #print direction
         print("Dir = %f; %f" % (dir.linear.x, dir.angular.z))
             
-        pub.publish(dir)
+        self.pub.publish(dir)
 
 
 def main(args=None):
