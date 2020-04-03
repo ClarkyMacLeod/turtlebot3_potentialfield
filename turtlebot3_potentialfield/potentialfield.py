@@ -100,12 +100,12 @@ class Potentialfield(Node):
 
 
 def main():
-    rclpy.init()
+    rclpy.init(args=args)
     
 #DEBUG---------------------------------------------------------------------------------------
     print('potentialfield started')        
     
-    potential = Potentialfield()
+    potential = Potentialfield('potentialfield')
     # infinite loop
     rclpy.spin(potential)
 #DEBUG---------------------------------------------------------------------------------------
