@@ -23,10 +23,10 @@ class Potentialfield(Node):
         print('constructor of Potentialfield')
 
         #publisher and subscriber
-        self.create_subscription(LaserScan, 'scan', callback, qos)
+        self.create_subscription(LaserScan, 'scan', callback(LaserScan), qos)
         pub = self.create_publisher(Twist, "cmd_vel", 20)
 
-    def make_vector(msg):
+    def make_vector(self, msg):
         global R
 #DEBUG---------------------------------------------------------------------------------------
         print(msg.ranges)
@@ -39,7 +39,7 @@ class Potentialfield(Node):
         ranges = [1 - (x/R) for x in ranges]
         return ranges
 
-    def no_zeros(ranges):
+    def no_zeros(self, ranges):
         global r
         temp = []
         
@@ -49,7 +49,7 @@ class Potentialfield(Node):
 
         return temp
 
-    def callback(msg):
+    def callback(self, msg):
         global A
         global max_vel
         global max_rot
@@ -101,16 +101,19 @@ class Potentialfield(Node):
 
 
 def main(args=None):
-    rclpy.init(args=args)
-    
+    rclpy.init(args=args)    
 #DEBUG---------------------------------------------------------------------------------------
     print('potentialfield started')        
     
     potential = Potentialfield('potentialfield')
+#DEBUG---------------------------------------------------------------------------------------
+    print('this is after the spin')
+
     # infinite loop
     rclpy.spin(potential)
 #DEBUG---------------------------------------------------------------------------------------
     print('this is after the spin')
+
     rclpy.shutdown()
 
 
