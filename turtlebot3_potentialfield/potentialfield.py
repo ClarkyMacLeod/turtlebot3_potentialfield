@@ -29,6 +29,8 @@ class Potentialfield(Node):
             self.potentialfield_callback, 
             qos)
         self.pub = self.create_publisher(Twist, "cmd_vel", 20)
+#DEBUG---------------------------------------------------------------------------------------
+        print('Potentialfield was initialized')
 
     def make_vector(self, msg):
         global R
@@ -59,12 +61,9 @@ class Potentialfield(Node):
         global max_rot
 
 #DEBUG---------------------------------------------------------------------------------------
-        print(type(msg.ranges))
+        print('I heard sumtin...')
 
         ranges = self.make_vector(msg)
-        
-#DEBUG---------------------------------------------------------------------------------------
-        self.get_logger().info('I heard sumtin...')
 
         #make a vector of each entry in ranges
         for i, e in enumerate(ranges):
