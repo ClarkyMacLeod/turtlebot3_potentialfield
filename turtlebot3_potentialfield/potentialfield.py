@@ -16,7 +16,7 @@ max_rot = 1.82
 pub = None
 class Potentialfield(Node):
 
-    def _init_(self):
+    def _init_(self,node_name='potentialfield'):
         global pub
         qos = QoSProfile(depth=10)
 #DEBUG---------------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ def main(args=None):
 #DEBUG---------------------------------------------------------------------------------------
     print('potentialfield started')        
     
-    potential = Potentialfield('potentialfield')
+    potential = Potentialfield()
 #DEBUG---------------------------------------------------------------------------------------
     print('Potentialfield is created')
 
