@@ -20,7 +20,7 @@ class Potentialfield(Node):
 #DEBUG---------------------------------------------------------------------------------------
         print('constructor of Potentialfield')
 
-        super().__init__(self.node_name)
+        super().__init__('potentialfield')
         qos = QoSProfile(depth=10)
         #publisher and subscriber
         self.sub = self.create_subscription(
@@ -59,12 +59,9 @@ class Potentialfield(Node):
         global max_rot
 
 #DEBUG---------------------------------------------------------------------------------------
-        print(type(msg.ranges))
+        print('I heard sumtin...')
 
         ranges = self.make_vector(msg)
-        
-#DEBUG---------------------------------------------------------------------------------------
-        self.get_logger().info('I heard sumtin...')
 
         #make a vector of each entry in ranges
         for i, e in enumerate(ranges):
