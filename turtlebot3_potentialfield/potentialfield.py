@@ -24,7 +24,7 @@ class Potentialfield(Node):
         print('constructor of Potentialfield')
 
         #publisher and subscriber
-        self.create_subscription(LaserScan, 'scan', self.potentialfield_callback, qos)
+        self.create_subscription(LaserScan, 'scan', self.potentialfield_callback(LaserScan), qos)
         pub = self.create_publisher(Twist, "cmd_vel", 20)
 
     def make_vector(self, msg):
