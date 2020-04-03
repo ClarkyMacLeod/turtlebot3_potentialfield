@@ -24,7 +24,7 @@ class Potentialfield(Node):
         print('constructor of Potentialfield')
 
         #publisher and subscriber
-        self.create_subscription(LaserScan, 'scan', self.callback, qos)
+        self.create_subscription(LaserScan, 'scan', self.potentialfield_callback, qos)
         pub = self.create_publisher(Twist, "cmd_vel", 20)
 
     def make_vector(self, msg):
@@ -50,7 +50,7 @@ class Potentialfield(Node):
 
         return temp
 
-    def callback(self, msg):
+    def potentialfield_callback(self, msg):
         global A
         global max_vel
         global max_rot
