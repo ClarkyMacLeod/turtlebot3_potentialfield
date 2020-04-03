@@ -29,6 +29,8 @@ class Potentialfield(Node):
             self.potentialfield_callback, 
             qos)
         self.pub = self.create_publisher(Twist, "cmd_vel", 20)
+#DEBUG---------------------------------------------------------------------------------------
+        print('Potentialfield was initialized')
 
     def make_vector(self, msg):
         global R
