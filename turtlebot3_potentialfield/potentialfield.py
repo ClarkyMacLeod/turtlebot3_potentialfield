@@ -23,7 +23,7 @@ class Potentialfield(Node):
         print('constructor of Potentialfield')
 
         #publisher and subscriber
-        self.create_subscription(LaserScan, 'scan', callback(LaserScan), qos)
+        self.create_subscription(LaserScan, 'scan', callback(), qos)
         pub = self.create_publisher(Twist, "cmd_vel", 20)
 
     def make_vector(self, msg):
@@ -107,7 +107,7 @@ def main(args=None):
     
     potential = Potentialfield('potentialfield')
 #DEBUG---------------------------------------------------------------------------------------
-    print('this is after the spin')
+    print('Potentialfield is created')
 
     # infinite loop
     rclpy.spin(potential)
