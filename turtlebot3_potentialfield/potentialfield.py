@@ -57,7 +57,7 @@ class Potentialfield(Node):
         global pub
 
 #DEBUG---------------------------------------------------------------------------------------
-        print(type(self.msg.ranges))
+        print(type(msg.ranges))
 
         ranges = self.make_vector(msg)
         
