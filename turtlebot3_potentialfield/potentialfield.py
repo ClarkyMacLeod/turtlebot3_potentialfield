@@ -19,15 +19,16 @@ class Potentialfield(Node):
     def __init__(self,node_name='potentialfield'):
 #DEBUG---------------------------------------------------------------------------------------
         print('constructor of Potentialfield')
-
         super().__init__('potentialfield')
+
         qos = QoSProfile(depth=10)
         #publisher and subscriber
         self.sub = self.create_subscription(
             LaserScan,
             'scan', 
             self.potentialfield_callback, 
-            qos)
+            qos,
+            10)
         self.pub = self.create_publisher(Twist, "cmd_vel", 20)
 #DEBUG---------------------------------------------------------------------------------------
         print('Potentialfield was initialized')
