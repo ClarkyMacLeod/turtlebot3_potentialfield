@@ -20,7 +20,7 @@ class Potentialfield(Node):
 #DEBUG---------------------------------------------------------------------------------------
         print('constructor of Potentialfield')
 
-        super().__init__(self.node_name)
+        super().__init__('potentialfield')
         qos = QoSProfile(depth=10)
         #publisher and subscriber
         self.sub = self.create_subscription(
