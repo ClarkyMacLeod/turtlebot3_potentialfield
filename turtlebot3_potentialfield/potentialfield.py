@@ -14,9 +14,9 @@ A = 1
 max_vel = 0.26
 max_rot = 1.82
 pub = None
-class Potentialfield(Node)
+class Potentialfield(Node):
 
-    def _init_(self)
+    def _init_(self):
         qos = QoSProfile(depth=10)
 
         #publisher and subscriber
@@ -102,9 +102,10 @@ def main():
     
 #DEBUG---------------------------------------------------------------------------------------
     print('potentialfield started')        
-
+    
+    potential = Potentialfield()
     # infinite loop
-    rclpy.spin(Potentialfield())
+    rclpy.spin(potential)
 #DEBUG---------------------------------------------------------------------------------------
     print('this is after the spin')
     rclpy.shutdown()
