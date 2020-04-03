@@ -16,7 +16,7 @@ max_rot = 1.82
 
 class Potentialfield(Node):
 
-    def __init__(self):
+    def __init__(self,node_name='potentialfield'):
         qos = QoSProfile(depth=10)
 #DEBUG---------------------------------------------------------------------------------------
         print('constructor of Potentialfield')
@@ -107,7 +107,7 @@ def main(args=None):
 #DEBUG---------------------------------------------------------------------------------------
     print('potentialfield started')        
     
-    potential = Potentialfield('potentialfield')
+    potential = Potentialfield()
 #DEBUG---------------------------------------------------------------------------------------
     print('Potentialfield is created')
 
