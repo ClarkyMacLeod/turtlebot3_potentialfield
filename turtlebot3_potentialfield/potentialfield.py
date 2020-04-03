@@ -18,8 +18,9 @@ class Potentialfield(Node):
 
     def _init_(self):
         global pub
-        super().__init__('potentialfield')
         qos = QoSProfile(depth=10)
+#DEBUG---------------------------------------------------------------------------------------
+        print('constructor of Potentialfield')
 
         #publisher and subscriber
         self.create_subscription(LaserScan, 'scan', callback, qos)
@@ -100,7 +101,7 @@ class Potentialfield(Node):
 
 
 def main():
-    rclpy.init(args=args)
+    rclpy.init()
     
 #DEBUG---------------------------------------------------------------------------------------
     print('potentialfield started')        
