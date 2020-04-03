@@ -14,9 +14,10 @@ A = 1
 max_vel = 0.26
 max_rot = 1.82
 pub = None
+
 class Potentialfield(Node):
 
-    def _init_(self,node_name='potentialfield'):
+    def __init__(self,node_name='potentialfield'):
         global pub
         qos = QoSProfile(depth=10)
 #DEBUG---------------------------------------------------------------------------------------
