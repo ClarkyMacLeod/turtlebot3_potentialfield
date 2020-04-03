@@ -17,6 +17,8 @@ pub = None
 class Potentialfield(Node):
 
     def _init_(self):
+        global pub
+        super().__init__('potentialfield')
         qos = QoSProfile(depth=10)
 
         #publisher and subscriber
