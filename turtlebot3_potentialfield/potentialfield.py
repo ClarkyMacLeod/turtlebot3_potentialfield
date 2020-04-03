@@ -24,7 +24,7 @@ class Potentialfield(Node):
         print('constructor of Potentialfield')
 
         #publisher and subscriber
-        self.create_subscription(LaserScan, 'scan', callback(), qos)
+        self.create_subscription(LaserScan, 'scan', self.callback(LaserScan), qos)
         pub = self.create_publisher(Twist, "cmd_vel", 20)
 
     def make_vector(self, msg):
@@ -35,7 +35,7 @@ class Potentialfield(Node):
         #distances above R are not important
         ranges = [R if x > R else x for x in msg.ranges]
         #distances below r are to be discarded
-        ranges = no_zeros(ranges)
+        ranges = self.no_zeros(ranges)
         #lower distance has higher effect
         ranges = [1 - (x/R) for x in ranges]
         return ranges
@@ -59,7 +59,7 @@ class Potentialfield(Node):
 #DEBUG---------------------------------------------------------------------------------------
         print(type(self.msg.ranges))
 
-        ranges = make_vector(msg)
+        ranges = self.make_vector(msg)
         
 #DEBUG---------------------------------------------------------------------------------------
         self.get_logger().info('I heard sumtin...')
