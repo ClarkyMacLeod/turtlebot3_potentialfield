@@ -17,11 +17,11 @@ max_rot = 1.82
 class Potentialfield(Node):
 
     def __init__(self,node_name='potentialfield'):
-        print(self.default_callback_group(self))
-        qos = QoSProfile(depth=10)
 #DEBUG---------------------------------------------------------------------------------------
         print('constructor of Potentialfield')
 
+        super().__init__(self)
+        qos = QoSProfile(depth=10)
         #publisher and subscriber
         self.sub = self.create_subscription(
             LaserScan,
