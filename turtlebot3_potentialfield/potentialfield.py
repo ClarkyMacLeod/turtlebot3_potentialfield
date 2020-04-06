@@ -112,12 +112,12 @@ def main(args=None):
     
     potential = Potentialfield('potentialfield')
 #DEBUG---------------------------------------------------------------------------------------
-    print().info('Potentialfield is created')
+    print('Potentialfield is created')
 
     # infinite loop
     rclpy.spin(potential)
 #DEBUG---------------------------------------------------------------------------------------
-    print().info('this is after the spin')
+    print('this is after the spin')
 
     rclpy.shutdown()
 
