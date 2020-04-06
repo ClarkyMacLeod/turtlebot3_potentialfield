@@ -20,11 +20,11 @@ class Potentialfield(Node):
 
         super().__init__('potentialfield')
 
-        qos = QoSProfile(depth=10)
+        qos = QosProfile(QoSPresetProfiles(SENSOR_DARA))
         #publisher and subscriber
         self.sub = self.create_subscription(
-            Twist,
-            "cmd_vel", 
+            LaserScan,
+            "scan", 
             self.listener_callback, 
             qos)
 
