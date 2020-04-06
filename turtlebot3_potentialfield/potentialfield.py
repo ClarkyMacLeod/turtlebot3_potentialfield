@@ -25,7 +25,7 @@ class Potentialfield(Node):
         self.sub = self.create_subscription(
             LaserScan,
             "scan", 
-            self.listener_callback, 
+            self.callback, 
             qos)
 
         self.pub = self.create_publisher(
@@ -39,7 +39,7 @@ class Potentialfield(Node):
     def make_vector(self, msg):
         global R
 #DEBUG---------------------------------------------------------------------------------------
-        print(msg.ranges)
+        #self.get_logger().info(msg.ranges)
 
         #distances above R are not important
         ranges = [R if x > R else x for x in msg.ranges]
@@ -65,7 +65,7 @@ class Potentialfield(Node):
         global max_rot
 
 #DEBUG---------------------------------------------------------------------------------------
-        print('I heard sumtin...')
+        self.get_logger().info('I heard sumtin...')
 
         ranges = self.make_vector(msg)
 
@@ -101,23 +101,23 @@ class Potentialfield(Node):
         dir.angular.z = max_rot * math.asin(vector[1]/math.hypot(vector[0],vector[1]))
 
         #print direction
-        print("Dir = %f; %f" % (dir.linear.x, dir.angular.z))
+        self.get_logger().info("Dir = %f; %f" % (dir.linear.x, dir.angular.z))
             
         self.pub.publish(dir)
 
 def main(args=None):
     rclpy.init(args=args)    
 #DEBUG---------------------------------------------------------------------------------------
-    print('potentialfield started')        
+    self.get_logger().info('potentialfield started')        
     
     potential = Potentialfield('potentialfield')
 #DEBUG---------------------------------------------------------------------------------------
-    print('Potentialfield is created')
+    self.get_logger().info('Potentialfield is created')
 
     # infinite loop
     rclpy.spin(potential)
 #DEBUG---------------------------------------------------------------------------------------
-    print('this is after the spin')
+    self.get_logger().info('this is after the spin')
 
     rclpy.shutdown()
 
