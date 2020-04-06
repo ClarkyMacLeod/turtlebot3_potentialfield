@@ -20,7 +20,7 @@ class Potentialfield(Node):
 
         super().__init__('potentialfield')
 
-        qos = QosProfile(QoSPresetProfiles(SENSOR_DARA))
+        qos = QoSProfile(qos_profile_sensor_data)
         #publisher and subscriber
         self.sub = self.create_subscription(
             LaserScan,
