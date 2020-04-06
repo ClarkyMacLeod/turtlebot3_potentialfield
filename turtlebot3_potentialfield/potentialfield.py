@@ -24,7 +24,7 @@ class Potentialfield(Node):
         #publisher and subscriber
         self.sub = self.create_subscription(
             LaserScan,
-            'scan', 
+            "scan", 
             self.listener_callback, 
             qos)
 
