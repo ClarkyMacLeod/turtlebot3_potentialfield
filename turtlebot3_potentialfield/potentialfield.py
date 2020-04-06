@@ -27,7 +27,7 @@ class Potentialfield(Node):
             LaserScan,
             'scan', 
             self.potentialfield_callback, 
-            qos)
+            10)
         self.pub = self.create_publisher(Twist, "cmd_vel", 20)
 #DEBUG---------------------------------------------------------------------------------------
         print('Potentialfield was initialized')
