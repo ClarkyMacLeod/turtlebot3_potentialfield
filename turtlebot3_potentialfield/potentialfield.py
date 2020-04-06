@@ -35,18 +35,18 @@ class Potentialfield(Node):
         
         timer_period = 0.5
         self.timer = self.create_timer(timer_period, self.timer_callback)
-        self.i = 0
+        self.i = 0.0
 
     def timer_callback(self):
         msg = Twist()
         msg.linear.x = self.i
-        msg.linear.y = 42
-        msg.angular.z = 21
+        msg.linear.y = 42.0
+        msg.angular.z = 21.0
         self.pub.publish(msg)
 
         #print direction
         self.get_logger().info("Dir = %f; %f; %f" % (msg.linear.y,msg.linear.x, msg.angular.z))
-        self.i += 1
+        self.i += 1.0
          
 
 
