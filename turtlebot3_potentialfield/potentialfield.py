@@ -101,7 +101,7 @@ class Potentialfield(Node):
 #DEBUG---------------------------------------------------------------------------------------
         self.get_logger().info('linear_x :%f' % (linear_x))
 
-        dir.linear.x = max_vel * vector[0]
+        dir.linear.x = max_vel * float(vector[0])
         dir.angular.z = max_rot * math.asin(vector[1]/math.hypot(vector[0],vector[1]))
 
         #print direction
