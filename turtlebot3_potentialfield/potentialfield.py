@@ -2,7 +2,7 @@
 
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSProfile
+from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
 import numpy as np
@@ -20,7 +20,7 @@ class Potentialfield(Node):
 
         super().__init__('potentialfield')
 
-        qos = QoSProfile(qos_profile_sensor_data)
+        qos = qos_profile_sensor_data
         #publisher and subscriber
         self.sub = self.create_subscription(
             LaserScan,
