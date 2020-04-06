@@ -23,8 +23,8 @@ class Potentialfield(Node):
         qos = QoSProfile(depth=10)
         #publisher and subscriber
         self.sub = self.create_subscription(
-            LaserScan,
-            "scan", 
+            Twist,
+            "cmd_vel", 
             self.listener_callback, 
             qos)
 
@@ -34,7 +34,7 @@ class Potentialfield(Node):
             20)
 
     def listener_callback(self, msg):
-        self.get_logger().info(msg.ranges)
+        self.get_logger().info('I heard sumtin')
 
     def make_vector(self, msg):
         global R
