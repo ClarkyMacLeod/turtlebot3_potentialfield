@@ -33,7 +33,7 @@ class Potentialfield(Node):
             "cmd_vel", 
             20)
 
-def make_vector(self, msg):
+    def make_vector(self, msg):
         global R
 #DEBUG---------------------------------------------------------------------------------------
         print(msg.ranges)
