@@ -16,9 +16,10 @@ max_rot = 1.82
 
 class Potentialfield(Node):
 
-    def __init__(self,node_name='potentialfield'):
+    def __init__(self,node_name):
 #DEBUG---------------------------------------------------------------------------------------
         print('constructor of Potentialfield')
+
         super().__init__('potentialfield')
 
         qos = QoSProfile(depth=10)
@@ -26,12 +27,17 @@ class Potentialfield(Node):
         self.sub = self.create_subscription(
             LaserScan,
             'scan', 
-            self.potentialfield_callback, 
-            qos,
-            event_callbacks = 10)
-        self.pub = self.create_publisher(Twist, "cmd_vel", 20)
+            self.callback, 
+            qos)
 #DEBUG---------------------------------------------------------------------------------------
-        print('Potentialfield was initialized')
+        print('subscription of Potentialfield was created')
+
+        self.pub = self.create_publisher(
+            Twist, 
+            "cmd_vel", 
+            20)
+#DEBUG---------------------------------------------------------------------------------------
+        print('Potentialfield completely initialized')
 
     def make_vector(self, msg):
         global R
@@ -56,7 +62,7 @@ class Potentialfield(Node):
 
         return temp
 
-    def potentialfield_callback(self, msg):
+    def callback(self, msg):
         global A
         global max_vel
         global max_rot
@@ -108,7 +114,7 @@ def main(args=None):
 #DEBUG---------------------------------------------------------------------------------------
     print('potentialfield started')        
     
-    potential = Potentialfield()
+    potential = Potentialfield('potentialfield')
 #DEBUG---------------------------------------------------------------------------------------
     print('Potentialfield is created')
 
