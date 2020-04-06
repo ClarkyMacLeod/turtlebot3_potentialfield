@@ -108,16 +108,16 @@ class Potentialfield(Node):
 def main(args=None):
     rclpy.init(args=args)    
 #DEBUG---------------------------------------------------------------------------------------
-    self.get_logger().info('potentialfield started')        
+    print('potentialfield started')        
     
     potential = Potentialfield('potentialfield')
 #DEBUG---------------------------------------------------------------------------------------
-    self.get_logger().info('Potentialfield is created')
+    print().info('Potentialfield is created')
 
     # infinite loop
     rclpy.spin(potential)
 #DEBUG---------------------------------------------------------------------------------------
-    self.get_logger().info('this is after the spin')
+    print().info('this is after the spin')
 
     rclpy.shutdown()
 
