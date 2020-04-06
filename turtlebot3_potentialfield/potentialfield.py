@@ -23,8 +23,8 @@ class Potentialfield(Node):
         qos = QoSProfile(depth=10)
         #publisher and subscriber
         self.sub = self.create_subscription(
-            Twist,
-            "cmd_vel", 
+            LaserScan,
+            "scan", 
             self.listener_callback, 
             qos)
 
