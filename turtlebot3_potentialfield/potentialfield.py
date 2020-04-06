@@ -10,7 +10,7 @@ import math
 
 R = 3.5
 r = 0.12
-A = 1.0
+A = 0.5
 max_vel = 0.26
 max_rot = 1.82
 
@@ -64,9 +64,6 @@ class Potentialfield(Node):
         global max_vel
         global max_rot
 
-#DEBUG---------------------------------------------------------------------------------------
-        self.get_logger().info('I heard sumtin...')
-
         ranges = self.make_vector(msg)
 
         #make a vector of each entry in ranges
@@ -97,10 +94,6 @@ class Potentialfield(Node):
 
         #make direction message
         dir = Twist()
-        linear_x = max_vel * vector[0]
-#DEBUG---------------------------------------------------------------------------------------
-        self.get_logger().info('linear_x :%f' % (linear_x))
-
         dir.linear.x = max_vel * float(vector[0])
         dir.angular.z = max_rot * math.asin(vector[1]/math.hypot(vector[0],vector[1]))
 
@@ -115,15 +108,27 @@ def main(args=None):
     print('potentialfield started')        
     
     potential = Potentialfield('potentialfield')
-#DEBUG---------------------------------------------------------------------------------------
-    print('Potentialfield is created')
 
-    # infinite loop
-    rclpy.spin(potential)
-#DEBUG---------------------------------------------------------------------------------------
-    print('this is after the spin')
+    try:
+        # infinite loop
+        rclpy.spin(potential)
+    except rclpy.ROSInterruptException:
+        pass
+    finally:      
 
-    rclpy.shutdown()
+        dir = Twist()
+        dir.linear.x = 0.0
+        dir.linear.y = 0.0
+        dir.linear.z = 0.0
+
+        dir.angular.x = 0.0
+        dir.angular.y = 0.0
+        dir.angular.z = 0.0
+
+        potential.get_logger().info("Potentialfield has stopped")            
+        potential.pub.publish(dir)
+        potential.destroy_node()
+        rclpy.shutdown()
 
 
 if __name__ == '__main__':
