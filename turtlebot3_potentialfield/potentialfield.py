@@ -22,16 +22,19 @@ class Potentialfield(Node):
 
         qos = QoSProfile(depth=10)
         #publisher and subscriber
-        #self.sub = self.create_subscription(
-        #    LaserScan,
-        #    'scan', 
-        #    self.callback, 
-        #    qos)
+        self.sub = self.create_subscription(
+            LaserScan,
+            'scan', 
+            self.listener_callback, 
+            qos)
 
         self.pub = self.create_publisher(
             Twist, 
             "cmd_vel", 
             20)
+
+    def listener_callback(self, msg):
+        self.get_logger().info(msg.ranges)
 
     def make_vector(self, msg):
         global R
