@@ -10,7 +10,7 @@ import math
 
 R = 3.5
 r = 0.12
-A = 1
+A = 1.0
 max_vel = 0.26
 max_rot = 1.82
 
@@ -74,7 +74,7 @@ class Potentialfield(Node):
             ranges[i] = (e * math.cos(math.radians(i)) , e * math.sin(math.radians(i)))
             
         #sum of all vectors
-        vector = [0,0]
+        vector = [0.0,0.0]
         for i, e in enumerate(ranges):
             vector[0] += e[0]
             vector[1] += e[1]
