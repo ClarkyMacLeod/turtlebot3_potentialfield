@@ -74,7 +74,7 @@ class Potentialfield(Node):
             ranges[i] = (e * math.cos(math.radians(i)) , e * math.sin(math.radians(i)))
             
         #sum of all vectors
-        vector = (0,0)
+        vector = [0,0]
         for i, e in enumerate(ranges):
             vector[0] += e[0]
             vector[1] += e[1]
