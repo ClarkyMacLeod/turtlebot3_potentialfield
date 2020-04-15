@@ -8,9 +8,9 @@ from geometry_msgs.msg import Twist
 import numpy as np
 import math
 
-R = 3.5
+R = 0.4
 r = 0.12
-A = 0.5
+A = 2.5
 max_vel = 0.26
 max_rot = 1.82
 
