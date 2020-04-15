@@ -43,7 +43,7 @@ class Potentialfield(Node):
 
         #distances above R are not important
         ranges = [R if x > R else x for x in msg.ranges]
-        #distances below r are to be discarded
+        #distances below r should be discarded
         ranges = self.no_zeros(ranges)
         #lower distance has higher effect
         ranges = [1 - (x/R) for x in ranges]
